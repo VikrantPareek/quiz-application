@@ -101,6 +101,16 @@
     "correct_answer": "c"
   },
   {
+    "question": "What is the economic system in the United States?",
+    "options": {
+      "a": "Communist economy",
+      "b": "Socialist economy",
+      "c": "Capitalist economy",
+      "d": "Traditional economy"
+    },
+    "correct_answer": "c"
+  },
+  {
     "question": "What is the rule of law?",
     "options": {
       "a": "Everyone must follow the law",
