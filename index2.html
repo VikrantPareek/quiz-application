@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Civics Prep Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style2.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/" class="header-brand">
+      <!-- <img src="Logo.png" alt="Civics Prep logo" class="logo" /> -->
+      <span class="site-title">Civics Prep</span>
+    </a>
+    <span class="header-tag">USCIS Practice</span>
+  </header>
+
+  <main class="container">
+
+    <!-- ============ START SCREEN ============ -->
+    <section id="start-screen" class="screen" aria-labelledby="start-heading">
+      <div class="two-col">
+
+        <div class="panel-left">
+          <p class="eyebrow">Official Test Preparation</p>
+          <h2 id="start-heading" class="display-heading">
+            Practice the<br><em>USCIS Civics<br>Test</em>
+          </h2>
+          <p class="lede">100 official questions. A 100-minute cumulative timer — unused time carries forward.</p>
+
+          <ul class="feature-list">
+            <li>
+              <span class="feat-icon">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+              <span><strong>100 minutes</strong>Cumulative — carry time forward</span>
+            </li>
+            <li>
+              <span class="feat-icon">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="4" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M7 9h6M7 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+              <span><strong>100 questions</strong>All official USCIS civics topics</span>
+            </li>
+            <li>
+              <span class="feat-icon">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v10M6 9l4 4 4-4M4 15h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span><strong>CSV export</strong>Download your result instantly</span>
+            </li>
+            <li>
+              <span class="feat-icon">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10a7 7 0 1 1 14 0A7 7 0 0 1 3 10z" stroke="currentColor" stroke-width="1.6"/><path d="M10 7v3l2 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+              <span><strong>Practice mode</strong>Drill missed questions afterward</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="panel-right">
+          <div class="form-card">
+            <h3 class="form-card-title">Start your session</h3>
+            <form id="start-form" autocomplete="off">
+              <label for="student-name" class="field-label">Your name</label>
+              <input
+                id="student-name"
+                name="student-name"
+                type="text"
+                required
+                maxlength="80"
+                placeholder="Enter your name to begin"
+                aria-required="true"
+              />
+              <button type="submit" class="btn btn-primary btn-full">
+                Begin Quiz
+                <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </form>
+            <p class="form-note">Your name is only used for the result CSV.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ QUIZ SCREEN ============ -->
+    <section id="quiz-screen" class="screen hidden" aria-labelledby="quiz-heading">
+      <h2 id="quiz-heading" class="visually-hidden">Quiz</h2>
+
+      <div class="two-col two-col--quiz">
+
+        <aside class="quiz-sidebar">
+          <div class="sidebar-block">
+            <p class="sidebar-label">Progress</p>
+            <p id="progress-text" class="sidebar-value">1 / 100</p>
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
+              <div id="progress-fill" class="progress-fill"></div>
+            </div>
+          </div>
+          <div class="sidebar-block">
+            <p class="sidebar-label">Time remaining</p>
+            <p id="timer" class="timer" aria-live="polite">100:00</p>
+          </div>
+          <div class="sidebar-block">
+            <p class="sidebar-label">Score</p>
+            <p id="score-text" class="sidebar-score">0 correct</p>
+          </div>
+        </aside>
+
+        <div class="quiz-main">
+          <div class="card question-card">
+            <p id="question-text" class="question-text"></p>
+            <ul id="options-list" class="options-list" role="list"></ul>
+            <div class="question-footer">
+              <p id="feedback" class="feedback" aria-live="polite"></p>
+              <button id="next-btn" type="button" class="btn btn-primary" disabled>
+                Next
+                <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ RESULT SCREEN ============ -->
+    <section id="result-screen" class="screen hidden" aria-labelledby="result-heading">
+      <div class="two-col two-col--result">
+
+        <div class="panel-left panel-left--result">
+          <p class="eyebrow">Quiz complete</p>
+          <h2 id="result-heading" class="display-heading">Your<br><em>Result</em></h2>
+          <div class="score-display">
+            <dd id="r-percent" class="score-big"></dd>
+            <p class="score-sub">final score</p>
+          </div>
+          <p id="result-note" class="result-note hidden"></p>
+        </div>
+
+        <div class="panel-right panel-right--result">
+          <div class="card result-card">
+            <dl class="result-list">
+              <div><dt>Student</dt><dd id="r-name"></dd></div>
+              <div><dt>Questions</dt><dd id="r-total"></dd></div>
+              <div class="result-correct"><dt>Correct</dt><dd id="r-correct"></dd></div>
+              <div class="result-wrong"><dt>Incorrect</dt><dd id="r-incorrect"></dd></div>
+              <div><dt>Date</dt><dd id="r-date"></dd></div>
+              <div><dt>Time</dt><dd id="r-time"></dd></div>
+            </dl>
+          </div>
+          <div class="actions">
+            <button id="download-csv" type="button" class="btn btn-primary">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v10M6 9l4 4 4-4M4 15h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Download CSV
+            </button>
+            <button id="practice-hard" type="button" class="btn btn-secondary hidden">Practice Missed</button>
+            <button id="restart" type="button" class="btn btn-ghost">Start Over</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ PRACTICE-MODE OPTIONS ============ -->
+    <section id="practice-options" class="screen hidden" aria-labelledby="practice-heading">
+      <div class="two-col">
+
+        <div class="panel-left">
+          <p class="eyebrow">Review mode</p>
+          <h2 id="practice-heading" class="display-heading">Practice<br><em>Hard<br>Questions</em></h2>
+          <p id="practice-count" class="lede"></p>
+        </div>
+
+        <div class="panel-right">
+          <div class="form-card">
+            <fieldset class="practice-fieldset">
+              <legend class="field-label">Timer setting</legend>
+              <label class="radio-row">
+                <input type="radio" name="practice-timer" value="off" checked />
+                <span class="radio-label">
+                  <strong>No timer</strong>
+                  <span>Relaxed review at your own pace</span>
+                </span>
+              </label>
+              <label class="radio-row">
+                <input type="radio" name="practice-timer" value="on" />
+                <span class="radio-label">
+                  <strong>Cumulative timer</strong>
+                  <span>1 minute per question, carry-forward</span>
+                </span>
+              </label>
+            </fieldset>
+            <div class="actions actions--stacked">
+              <button id="start-practice" type="button" class="btn btn-primary btn-full">
+                Start Practice
+                <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button id="back-to-result" type="button" class="btn btn-ghost btn-full">← Back to results</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <small>Civics Prep &middot; Practice materials based on the USCIS civics test.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
