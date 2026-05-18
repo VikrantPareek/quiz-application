@@ -6,7 +6,7 @@
 (function () {
   "use strict";
 
-  const TOTAL_QUESTIONS = 1;
+  const TOTAL_QUESTIONS = 100;
   const TOTAL_SECONDS = TOTAL_QUESTIONS * 60; // 100 minutes cumulative
 
   // ----- DOM refs -----
