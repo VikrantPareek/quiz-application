@@ -7,7 +7,7 @@
   "use strict";
 
   const TOTAL_QUESTIONS = 100;
-  const TOTAL_SECONDS = TOTAL_QUESTIONS * 60; // 100 minutes cumulative
+  const SECS_PER_Q      = 60; // 1 minute per question for ALL modes
 
   // ----- DOM refs -----
   const startScreen   = document.getElementById("start-screen");
@@ -17,6 +17,8 @@
 
   const startForm     = document.getElementById("start-form");
   const nameInput     = document.getElementById("student-name");
+  const hardModeStart = document.getElementById("hard-mode-start");
+  const hardModeResult= document.getElementById("hard-mode-result");
 
   const progressText  = document.getElementById("progress-text");
   const progressFill  = document.getElementById("progress-fill");
@@ -28,6 +30,7 @@
   const optionsList   = document.getElementById("options-list");
   const feedbackEl    = document.getElementById("feedback");
   const nextBtn       = document.getElementById("next-btn");
+  const quitBtn       = document.getElementById("quit-btn");
 
   const rName         = document.getElementById("r-name");
   const rTotal        = document.getElementById("r-total");
@@ -47,23 +50,21 @@
   const backToResult  = document.getElementById("back-to-result");
 
   // ----- State -----
-  let allQuestions   = [];   // loaded from questions.json
-  let quizQuestions  = [];   // active sequence (shuffled main quiz or missed-only practice)
+  let allQuestions   = [];
+  let quizQuestions  = [];
   let currentIndex   = 0;
   let correctCount   = 0;
   let incorrectCount = 0;
   let answered       = false;
-  let missed         = [];   // missed questions from main quiz (for hard practice)
-  let lastResult     = null; // payload for CSV
+  let missed         = [];
+  let lastResult     = null;
   let studentName    = "";
-  let mode           = "main"; // "main" | "practice"
-  let useTimerInPractice = false;
+  let mode           = "main"; // "main" | "hard" | "practice"
 
   // Timer state
-  let timerId        = null;
-  let remainingSecs  = 0;
-  let timerActive    = false;
-  let autoSubmitted  = false;
+  let timerId       = null;
+  let remainingSecs = 0;
+  let timerActive   = false;
 
   // ----- Init -----
   loadQuestions();
@@ -73,19 +74,51 @@
     const name = nameInput.value.trim();
     if (!name) return;
     studentName = name;
-    beginMainQuiz();
+    beginQuiz("main");
+  });
+
+  hardModeStart.addEventListener("click", function () {
+    const name = nameInput.value.trim();
+    if (!name) { nameInput.focus(); return; }
+    studentName = name;
+    beginQuiz("hard");
+  });
+
+  hardModeResult.addEventListener("click", function () {
+    // Combine is_hard questions + missed questions (deduplicated)
+    const hardQs   = allQuestions.filter(function (q) { return q.is_hard === true; });
+    const missedMap = {};
+    missed.forEach(function (q) { missedMap[q.question] = q; });
+    hardQs.forEach(function (q) { missedMap[q.question] = q; });
+    const combined = Object.values(missedMap);
+
+    hide(resultScreen);
+
+    mode           = "hard";
+    quizQuestions  = shuffle(combined);
+    currentIndex   = 0;
+    correctCount   = 0;
+    incorrectCount = 0;
+    missed         = [];
+
+    show(quizScreen);
+    renderQuestion();
   });
 
   nextBtn.addEventListener("click", handleNext);
   downloadBtn.addEventListener("click", downloadCsv);
   practiceBtn.addEventListener("click", showPracticeOptions);
-  restartBtn.addEventListener("click", function () {
-    location.reload();
-  });
+  restartBtn.addEventListener("click", function () { location.reload(); });
   startPractice.addEventListener("click", beginPractice);
   backToResult.addEventListener("click", function () {
     show(resultScreen);
     hide(practiceOpts);
+  });
+
+  quitBtn.addEventListener("click", function () {
+    if (!confirm("Quit the quiz? Your progress will be lost.")) return;
+    stopTimer();
+    location.reload();
   });
 
   // =====================================================
@@ -107,31 +140,40 @@
         console.error(err);
         startForm.innerHTML =
           '<p style="color:#DC2626">Could not load questions.json. ' +
-          'Please serve this page over HTTP (e.g. via Docker or a local server).</p>';
+          "Please serve this page over HTTP.</p>";
       });
   }
 
   // =====================================================
-  //  Main quiz
+  //  Begin quiz
   // =====================================================
-  function beginMainQuiz() {
-    mode = "main";
-    quizQuestions = shuffle(allQuestions.slice());
-    currentIndex = 0;
-    correctCount = 0;
+  function beginQuiz(quizMode) {
+    mode = quizMode;
+
+    // Hard mode: only questions with is_hard === true
+    const pool = (mode === "hard")
+      ? allQuestions.filter(function (q) { return q.is_hard === true; })
+      : allQuestions.slice();
+
+    if (pool.length === 0) {
+      alert("No questions found for this mode.");
+      return;
+    }
+
+    quizQuestions  = shuffle(pool);
+    currentIndex   = 0;
+    correctCount   = 0;
     incorrectCount = 0;
-    missed = [];
-    autoSubmitted = false;
+    missed         = [];
 
     hide(startScreen);
     show(quizScreen);
 
-    startTimer(TOTAL_SECONDS);
-    renderQuestion();
+    renderQuestion(); // renderQuestion starts the timer for Q1
   }
 
   // =====================================================
-  //  Practice mode
+  //  Practice mode (after main/hard quiz)
   // =====================================================
   function showPracticeOptions() {
     practiceCount.textContent =
@@ -143,38 +185,44 @@
   }
 
   function beginPractice() {
-    if (missed.length === 0) {
-      hide(practiceOpts);
-      show(resultScreen);
-      return;
-    }
+    if (missed.length === 0) { hide(practiceOpts); show(resultScreen); return; }
+
     const choice = document.querySelector('input[name="practice-timer"]:checked');
-    useTimerInPractice = choice && choice.value === "on";
+    const useTimer = choice && choice.value === "on";
 
     mode = "practice";
-    quizQuestions = shuffle(missed.slice());
-    currentIndex = 0;
-    correctCount = 0;
+    quizQuestions  = shuffle(missed.slice());
+    currentIndex   = 0;
+    correctCount   = 0;
     incorrectCount = 0;
-    autoSubmitted = false;
 
     hide(practiceOpts);
     show(quizScreen);
 
-    if (useTimerInPractice) {
-      startTimer(quizQuestions.length * 60);
+    if (useTimer) {
+      renderQuestion(); // timer starts inside renderQuestion
     } else {
       stopTimer();
-      timerEl.textContent = "Practice mode (no timer)";
+      timerEl.textContent = "No timer";
       timerEl.classList.remove("warning");
+      renderQuestionNoTimer();
     }
-    renderQuestion();
   }
 
   // =====================================================
   //  Question rendering
   // =====================================================
   function renderQuestion() {
+    setupQuestion();
+    startPerQuestionTimer(); // fresh 60-second countdown every question
+  }
+
+  function renderQuestionNoTimer() {
+    setupQuestion();
+    // no timer started
+  }
+
+  function setupQuestion() {
     answered = false;
     feedbackEl.textContent = "";
     feedbackEl.className = "feedback";
@@ -184,7 +232,7 @@
     const q = quizQuestions[currentIndex];
 
     progressText.textContent = "Question " + (currentIndex + 1) + " of " + total;
-    const pct = Math.round(((currentIndex) / total) * 100);
+    const pct = Math.round((currentIndex / total) * 100);
     progressFill.style.width = pct + "%";
     progressBar.setAttribute("aria-valuenow", String(pct));
     updateScoreText();
@@ -194,7 +242,7 @@
 
     const letters = ["a", "b", "c", "d"];
     letters.forEach(function (letter) {
-      const li = document.createElement("li");
+      const li  = document.createElement("li");
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "option-btn";
@@ -207,12 +255,10 @@
       optionsList.appendChild(li);
     });
 
-    // On the LAST question of the main quiz, the Submit button must remain
-    // visible regardless of remaining time. We swap the label and force-enable
-    // it only after an answer is selected (consistent with prior questions).
-    if (mode === "main" && currentIndex === total - 1) {
+    const isLast = currentIndex === quizQuestions.length - 1;
+    if (mode === "main" && isLast) {
       nextBtn.textContent = "Submit Quiz";
-    } else if (currentIndex === total - 1) {
+    } else if (isLast) {
       nextBtn.textContent = "Finish";
     } else {
       nextBtn.textContent = "Next";
@@ -222,12 +268,12 @@
   function selectAnswer(letter, btnEl) {
     if (answered) return;
     answered = true;
+    stopTimer(); // stop the countdown as soon as they answer
 
     const q = quizQuestions[currentIndex];
     const correct = q.correct_answer;
     const isCorrect = letter === correct;
 
-    // Lock all buttons; highlight correct + selection.
     const buttons = optionsList.querySelectorAll(".option-btn");
     buttons.forEach(function (b) {
       b.disabled = true;
@@ -241,10 +287,9 @@
       feedbackEl.classList.add("correct");
     } else {
       incorrectCount++;
-      feedbackEl.textContent =
-        "Incorrect. Correct answer: " + q.options[correct];
+      feedbackEl.textContent = "Incorrect. Correct answer: " + q.options[correct];
       feedbackEl.classList.add("wrong");
-      if (mode === "main") missed.push(q);
+      missed.push(q);
     }
 
     updateScoreText();
@@ -255,26 +300,32 @@
     if (!answered) return;
     if (currentIndex < quizQuestions.length - 1) {
       currentIndex++;
-      renderQuestion();
+      // Resume with timer or without depending on mode
+      if (mode === "practice") {
+        const choice = document.querySelector('input[name="practice-timer"]:checked');
+        if (choice && choice.value === "on") {
+          renderQuestion();
+        } else {
+          renderQuestionNoTimer();
+        }
+      } else {
+        renderQuestion();
+      }
     } else {
       finishQuiz(false);
     }
   }
 
   function updateScoreText() {
-    const total = mode === "main" ? TOTAL_QUESTIONS : quizQuestions.length;
-    scoreText.textContent =
-      "Score: " + correctCount + " out of " + total + " correct";
+    scoreText.textContent = correctCount + " correct";
   }
 
   // =====================================================
-  //  Timer (cumulative, carry-forward by design)
-  //  Single global countdown — unused time naturally carries
-  //  forward because we never reset between questions.
+  //  Per-question timer (1 min, no carry-forward)
   // =====================================================
-  function startTimer(seconds) {
+  function startPerQuestionTimer() {
     stopTimer();
-    remainingSecs = seconds;
+    remainingSecs = SECS_PER_Q;
     timerActive = true;
     updateTimerDisplay();
     timerId = setInterval(function () {
@@ -283,7 +334,7 @@
         remainingSecs = 0;
         updateTimerDisplay();
         stopTimer();
-        autoSubmitOnTimeout();
+        autoSkipQuestion();
         return;
       }
       updateTimerDisplay();
@@ -291,39 +342,45 @@
   }
 
   function stopTimer() {
-    if (timerId !== null) {
-      clearInterval(timerId);
-      timerId = null;
-    }
+    if (timerId !== null) { clearInterval(timerId); timerId = null; }
     timerActive = false;
   }
 
   function updateTimerDisplay() {
     const m = Math.floor(remainingSecs / 60);
     const s = remainingSecs % 60;
-    timerEl.textContent =
-      "Time left: " + m + ":" + (s < 10 ? "0" : "") + s;
-    if (remainingSecs <= 60) {
-      timerEl.classList.add("warning");
-    } else {
-      timerEl.classList.remove("warning");
-    }
+    timerEl.textContent = m + ":" + (s < 10 ? "0" : "") + s;
+    timerEl.classList.toggle("warning", remainingSecs <= 15);
   }
 
-  function autoSubmitOnTimeout() {
-    autoSubmitted = true;
-    // Any unanswered remaining questions count as incorrect.
-    const unanswered = quizQuestions.length - (correctCount + incorrectCount);
-    if (unanswered > 0) {
-      // Track them as missed (so practice still picks them up after a timeout).
-      for (let i = currentIndex; i < quizQuestions.length; i++) {
-        const q = quizQuestions[i];
-        if (i === currentIndex && answered) continue; // current already counted
-        if (mode === "main") missed.push(q);
+  // Time's up on this question — mark wrong, reveal answer, auto-advance after 2s
+  function autoSkipQuestion() {
+    if (answered) return;
+    answered = true;
+
+    incorrectCount++;
+    missed.push(quizQuestions[currentIndex]);
+
+    const correct = quizQuestions[currentIndex].correct_answer;
+    const buttons = optionsList.querySelectorAll(".option-btn");
+    buttons.forEach(function (b) {
+      b.disabled = true;
+      if (b.dataset.letter === correct) b.classList.add("correct");
+    });
+
+    feedbackEl.textContent = "Time's up! Correct: " + quizQuestions[currentIndex].options[correct];
+    feedbackEl.className = "feedback wrong";
+    updateScoreText();
+
+    // Auto-advance to next question after 2 seconds
+    setTimeout(function () {
+      if (currentIndex < quizQuestions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        finishQuiz(false);
       }
-      incorrectCount += unanswered;
-    }
-    finishQuiz(true);
+    }, 2000);
   }
 
   // =====================================================
@@ -334,12 +391,12 @@
     hide(quizScreen);
     show(resultScreen);
 
-    const total = mode === "main" ? TOTAL_QUESTIONS : quizQuestions.length;
-    const correct = correctCount;
+    const total     = quizQuestions.length;
+    const correct   = correctCount;
     const incorrect = total - correct;
-    const percent = total === 0 ? 0 : Math.round((correct / total) * 100);
+    const percent   = total === 0 ? 0 : Math.round((correct / total) * 100);
 
-    const now = new Date();
+    const now     = new Date();
     const dateStr = formatDate(now);
     const timeStr = formatTime(now);
 
@@ -352,34 +409,28 @@
     rTime.textContent      = timeStr;
 
     if (viaTimeout) {
-      resultNote.textContent =
-        "Time expired. Unanswered questions were counted as incorrect.";
+      resultNote.textContent = "Time expired. Question was counted as incorrect.";
       show(resultNote);
     } else {
       resultNote.textContent = "";
       hide(resultNote);
     }
 
-    // Only the main quiz produces a downloadable CSV and a hard-practice option.
-    if (mode === "main") {
-      lastResult = {
-        student_name: studentName,
-        total_questions: total,
-        correct_answers: correct,
-        incorrect_answers: incorrect,
-        percentage_score: percent + "%",
-        date: dateStr,
-        time: timeStr
-      };
-      downloadBtn.classList.remove("hidden");
-      if (missed.length > 0) {
-        practiceBtn.classList.remove("hidden");
-      } else {
-        practiceBtn.classList.add("hidden");
-      }
+    lastResult = {
+      student_name:     studentName,
+      total_questions:  total,
+      correct_answers:  correct,
+      incorrect_answers:incorrect,
+      percentage_score: percent + "%",
+      date: dateStr,
+      time: timeStr
+    };
+
+    downloadBtn.classList.remove("hidden");
+
+    if (missed.length > 0) {
+      practiceBtn.classList.remove("hidden");
     } else {
-      // Practice run: hide CSV download (the brief scopes CSV to the main result).
-      downloadBtn.classList.add("hidden");
       practiceBtn.classList.add("hidden");
     }
   }
@@ -390,15 +441,15 @@
   function downloadCsv() {
     if (!lastResult) return;
     const header = [
-      "student_name", "total_questions", "correct_answers",
-      "incorrect_answers", "percentage_score", "date", "time"
+      "student_name","total_questions","correct_answers",
+      "incorrect_answers","percentage_score","date","time"
     ];
     const row = header.map(function (h) { return csvEscape(lastResult[h]); });
     const csv = header.join(",") + "\n" + row.join(",") + "\n";
 
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement("a");
     a.href = url;
     a.download = filenameFor(lastResult);
     document.body.appendChild(a);
@@ -409,17 +460,13 @@
 
   function filenameFor(r) {
     const safeName = (r.student_name || "student")
-      .replace(/[^a-z0-9_\-]+/gi, "_")
-      .replace(/^_+|_+$/g, "")
-      .toLowerCase() || "student";
+      .replace(/[^a-z0-9_\-]+/gi, "_").replace(/^_+|_+$/g, "").toLowerCase() || "student";
     return "civics_result_" + safeName + "_" + r.date + ".csv";
   }
 
   function csvEscape(value) {
     const s = String(value == null ? "" : value);
-    if (/[",\n]/.test(s)) {
-      return '"' + s.replace(/"/g, '""') + '"';
-    }
+    if (/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
     return s;
   }
 
@@ -439,11 +486,8 @@
 
   function escapeHtml(s) {
     return String(s)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
 
   function pad2(n) { return (n < 10 ? "0" : "") + n; }
@@ -459,4 +503,5 @@
     h = h % 12; if (h === 0) h = 12;
     return h + ":" + pad2(m) + " " + ampm;
   }
+
 })();

@@ -1,5 +1,15 @@
 [
-  
+  {
+    "question": "What is the supreme law of the land?",
+    "options": {
+      "a": "The Declaration of Independence",
+      "b": "The Constitution",
+      "c": "The Bill of Rights",
+      "d": "The Articles of Confederation"
+    },
+    "correct_answer": "b",
+    "is_hard": false
+  },
   {
     "question": "What does the Constitution do?",
     "options": {
@@ -8,7 +18,8 @@
       "c": "Establishes the military",
       "d": "Creates the court system"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "The idea of self-government is in the first three words of the Constitution. What are these words?",
@@ -18,7 +29,8 @@
       "c": "All men are",
       "d": "E pluribus unum"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What is an amendment?",
@@ -28,7 +40,8 @@
       "c": "A Supreme Court decision",
       "d": "A presidential order"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What do we call the first ten amendments to the Constitution?",
@@ -38,7 +51,8 @@
       "c": "The Articles of Amendment",
       "d": "The Constitutional Amendments"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What is one right or freedom from the First Amendment?",
@@ -48,7 +62,8 @@
       "c": "The right to vote",
       "d": "Freedom from taxes"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "How many amendments does the Constitution have?",
@@ -58,7 +73,8 @@
       "c": "27",
       "d": "50"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "What did the Declaration of Independence do?",
@@ -68,7 +84,8 @@
       "c": "Created the Constitution",
       "d": "Established the first government"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "What are two rights in the Declaration of Independence?",
@@ -78,7 +95,8 @@
       "c": "Property and pursuit of happiness",
       "d": "Speech and religion"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What is freedom of religion?",
@@ -88,7 +106,8 @@
       "c": "The government chooses your religion",
       "d": "All religions are illegal except one"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What is the economic system in the United States?",
@@ -98,17 +117,8 @@
       "c": "Capitalist economy",
       "d": "Traditional economy"
     },
-    "correct_answer": "c"
-  },
-  {
-    "question": "What is the economic system in the United States?",
-    "options": {
-      "a": "Communist economy",
-      "b": "Socialist economy",
-      "c": "Capitalist economy",
-      "d": "Traditional economy"
-    },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "What is the rule of law?",
@@ -118,7 +128,8 @@
       "c": "Laws are optional",
       "d": "Only citizens must follow the law"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "Name one branch or part of the government.",
@@ -128,7 +139,8 @@
       "c": "The Federal Reserve",
       "d": "The Supreme Court"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What stops one branch of government from becoming too powerful?",
@@ -138,7 +150,8 @@
       "c": "The military",
       "d": "The Supreme Court"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "Who is in charge of the executive branch?",
@@ -148,7 +161,8 @@
       "c": "The President",
       "d": "The Vice President"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "Who makes federal laws?",
@@ -158,7 +172,8 @@
       "c": "The Supreme Court",
       "d": "The Governors"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "What are the two parts of the U.S. Congress?",
@@ -168,7 +183,8 @@
       "c": "The Senate and the Supreme Court",
       "d": "The Congress and the President"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "How many U.S. Senators are there?",
@@ -178,7 +194,8 @@
       "c": "200",
       "d": "435"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "We elect a U.S. Senator for how many years?",
@@ -188,7 +205,8 @@
       "c": "6 years",
       "d": "8 years"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "Who is one of your state's U.S. Senators now?",
@@ -198,7 +216,8 @@
       "c": "Hillary Clinton",
       "d": "Bernie Sanders"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": true
   },
   {
     "question": "The House of Representatives has how many voting members?",
@@ -208,7 +227,8 @@
       "c": "435",
       "d": "538"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "We elect a U.S. Representative for how many years?",
@@ -218,7 +238,8 @@
       "c": "6 years",
       "d": "8 years"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "Name your U.S. Representative.",
@@ -228,7 +249,8 @@
       "c": "Paul Ryan",
       "d": "Kevin McCarthy"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": true
   },
   {
     "question": "Who does a U.S. Senator represent?",
@@ -238,7 +260,8 @@
       "c": "Only their political party",
       "d": "Only the largest city in the state"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "Why do some states have more Representatives than other states?",
@@ -248,7 +271,8 @@
       "c": "Because of the state's size",
       "d": "Because of the state's wealth"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "We elect a President for how many years?",
@@ -258,7 +282,8 @@
       "c": "6 years",
       "d": "8 years"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "In what month do we vote for President?",
@@ -268,7 +293,8 @@
       "c": "September",
       "d": "November"
     },
-    "correct_answer": "d"
+    "correct_answer": "d",
+    "is_hard": false
   },
   {
     "question": "What is the name of the President of the United States now?",
@@ -278,7 +304,8 @@
       "c": "Joe Biden",
       "d": "Barack Obama"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": true
   },
   {
     "question": "What is the name of the Vice President of the United States now?",
@@ -288,7 +315,8 @@
       "c": "Mike Pence",
       "d": "Dick Cheney"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": true
   },
   {
     "question": "If the President can no longer serve who becomes President?",
@@ -298,7 +326,8 @@
       "c": "The Vice President",
       "d": "The Secretary of State"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "If both the President and the Vice President can no longer serve who becomes President?",
@@ -308,7 +337,8 @@
       "c": "The Secretary of State",
       "d": "The President pro tempore"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "Who is the Commander in Chief of the military?",
@@ -318,7 +348,8 @@
       "c": "The President",
       "d": "The Chairman of the Joint Chiefs"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "Who signs bills to become laws?",
@@ -328,7 +359,8 @@
       "c": "The President",
       "d": "The Speaker of the House"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "Who vetoes bills?",
@@ -338,7 +370,8 @@
       "c": "The President",
       "d": "The Speaker of the House"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "What does the President's Cabinet do?",
@@ -348,7 +381,8 @@
       "c": "Commands the military",
       "d": "Interprets laws"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What are two Cabinet-level positions?",
@@ -358,7 +392,8 @@
       "c": "Senator and Representative",
       "d": "Governor and Mayor"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What does the judicial branch do?",
@@ -368,7 +403,8 @@
       "c": "Enforces laws",
       "d": "Creates taxes"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What is the highest court in the United States?",
@@ -378,7 +414,8 @@
       "c": "The District Court",
       "d": "The Court of Appeals"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "How many justices are on the Supreme Court?",
@@ -388,7 +425,8 @@
       "c": "11",
       "d": "13"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "Who is the Chief Justice of the United States now?",
@@ -398,7 +436,8 @@
       "c": "Clarence Thomas",
       "d": "Sonia Sotomayor"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": true
   },
   {
     "question": "Under our Constitution some powers belong to the federal government. What is one power of the federal government?",
@@ -408,7 +447,8 @@
       "c": "To provide safety (fire departments)",
       "d": "To print money"
     },
-    "correct_answer": "d"
+    "correct_answer": "d",
+    "is_hard": false
   },
   {
     "question": "Under our Constitution some powers belong to the states. What is one power of the states?",
@@ -418,7 +458,8 @@
       "c": "To provide schooling and education",
       "d": "To make treaties"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "Who is the Governor of your state now?",
@@ -428,7 +469,8 @@
       "c": "Gavin Newsom",
       "d": "Ron DeSantis"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": true
   },
   {
     "question": "What is the capital of your state?",
@@ -438,7 +480,8 @@
       "c": "Los Angeles",
       "d": "Chicago"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": true
   },
   {
     "question": "What are the two major political parties in the United States?",
@@ -448,7 +491,8 @@
       "c": "Federalist and Anti-Federalist",
       "d": "Green and Libertarian"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What is the political party of the President now?",
@@ -458,7 +502,8 @@
       "c": "Republican",
       "d": "Independent"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": true
   },
   {
     "question": "What is the name of the Speaker of the House of Representatives now?",
@@ -468,7 +513,8 @@
       "c": "Kevin McCarthy",
       "d": "Mike Johnson"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": true
   },
   {
     "question": "There are four amendments to the Constitution about who can vote. Describe one of them.",
@@ -478,7 +524,8 @@
       "c": "Only property owners can vote",
       "d": "Only citizens born in the U.S. can vote"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What is one responsibility that is only for United States citizens?",
@@ -488,7 +535,8 @@
       "c": "Obey laws",
       "d": "Attend school"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "Name one right only for United States citizens.",
@@ -498,7 +546,8 @@
       "c": "Freedom of religion",
       "d": "Right to bear arms"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "What are two rights of everyone living in the United States?",
@@ -508,7 +557,8 @@
       "c": "Own property and bear arms",
       "d": "Travel freely and work"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What do we show loyalty to when we say the Pledge of Allegiance?",
@@ -518,7 +568,8 @@
       "c": "The Constitution",
       "d": "The military"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "What is one promise you make when you become a United States citizen?",
@@ -528,7 +579,8 @@
       "c": "To serve in the military",
       "d": "To vote in every election"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "How old do citizens have to be to vote for President?",
@@ -538,7 +590,8 @@
       "c": "21",
       "d": "25"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "What are two ways that Americans can participate in their democracy?",
@@ -548,7 +601,8 @@
       "c": "Work and go to school",
       "d": "Travel and own property"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "When is the last day you can send in federal income tax forms?",
@@ -558,7 +612,8 @@
       "c": "June 30",
       "d": "December 31"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "When must all men register for the Selective Service?",
@@ -568,7 +623,8 @@
       "c": "Between eighteen and twenty-six",
       "d": "At age twenty-one"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "What is one reason colonists came to America?",
@@ -578,7 +634,8 @@
       "c": "Land",
       "d": "All of the above"
     },
-    "correct_answer": "d"
+    "correct_answer": "d",
+    "is_hard": false
   },
   {
     "question": "Who lived in America before the Europeans arrived?",
@@ -588,7 +645,8 @@
       "c": "The Pilgrims",
       "d": "The Vikings"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "What group of people was taken to America and sold as slaves?",
@@ -598,7 +656,8 @@
       "c": "Africans",
       "d": "Chinese immigrants"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "Why did the colonists fight the British?",
@@ -608,7 +667,8 @@
       "c": "Because they wanted to expand west",
       "d": "Because of religious differences"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "Who wrote the Declaration of Independence?",
@@ -618,7 +678,8 @@
       "c": "Benjamin Franklin",
       "d": "John Adams"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "When was the Declaration of Independence adopted?",
@@ -628,7 +689,8 @@
       "c": "September 17 1787",
       "d": "June 21 1788"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "There were 13 original states. Name three.",
@@ -638,7 +700,8 @@
       "c": "Ohio Indiana and Illinois",
       "d": "Virginia North Carolina and Georgia"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What happened at the Constitutional Convention?",
@@ -648,7 +711,8 @@
       "c": "The Bill of Rights was added",
       "d": "The Revolutionary War ended"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "When was the Constitution written?",
@@ -658,7 +722,8 @@
       "c": "1791",
       "d": "1800"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.",
@@ -668,7 +733,8 @@
       "c": "James Madison",
       "d": "Patrick Henry"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "What is one thing Benjamin Franklin is famous for?",
@@ -678,7 +744,8 @@
       "c": "Author of the Federalist Papers",
       "d": "Commander of the Continental Army"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "Who is the Father of Our Country?",
@@ -688,7 +755,8 @@
       "c": "George Washington",
       "d": "John Adams"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "Who was the first President?",
@@ -698,7 +766,8 @@
       "c": "George Washington",
       "d": "Benjamin Franklin"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "What territory did the United States buy from France in 1803?",
@@ -708,7 +777,8 @@
       "c": "The Louisiana Territory",
       "d": "Texas"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "Name one war fought by the United States in the 1800s.",
@@ -718,7 +788,8 @@
       "c": "The Civil War",
       "d": "The Korean War"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "Name the U.S. war between the North and the South.",
@@ -728,7 +799,8 @@
       "c": "World War I",
       "d": "The War of 1812"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "Name one problem that led to the Civil War.",
@@ -738,7 +810,8 @@
       "c": "Taxation without representation",
       "d": "Trade disputes"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What was one important thing that Abraham Lincoln did?",
@@ -748,7 +821,8 @@
       "c": "Led the Continental Army",
       "d": "Was the first President"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "What did the Emancipation Proclamation do?",
@@ -758,7 +832,8 @@
       "c": "Granted voting rights to women",
       "d": "Created the Union Army"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "What did Susan B. Anthony do?",
@@ -768,7 +843,8 @@
       "c": "Wrote the Constitution",
       "d": "Was a spy during the Civil War"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "Name one war fought by the United States in the 1900s.",
@@ -778,7 +854,8 @@
       "c": "The Revolutionary War",
       "d": "The War of 1812"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "Who was President during World War I?",
@@ -788,7 +865,8 @@
       "c": "Franklin Roosevelt",
       "d": "Harry Truman"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "Who was President during the Great Depression and World War II?",
@@ -798,7 +876,8 @@
       "c": "Franklin Roosevelt",
       "d": "Harry Truman"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "Who did the United States fight in World War II?",
@@ -808,7 +887,8 @@
       "c": "Russia and China",
       "d": "Spain and Portugal"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "Before he was President Eisenhower was a general. What war was he in?",
@@ -818,7 +898,8 @@
       "c": "The Korean War",
       "d": "The Vietnam War"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "During the Cold War what was the main concern of the United States?",
@@ -828,7 +909,8 @@
       "c": "Terrorism",
       "d": "Climate change"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What movement tried to end racial discrimination?",
@@ -838,7 +920,8 @@
       "c": "The women's suffrage movement",
       "d": "The environmental movement"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "What did Martin Luther King Jr. do?",
@@ -848,7 +931,8 @@
       "c": "Wrote the Constitution",
       "d": "Was a general in World War II"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What major event happened on September 11 2001 in the United States?",
@@ -858,7 +942,8 @@
       "c": "Hurricane Katrina hit",
       "d": "The Iraq War began"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "Name one American Indian tribe in the United States.",
@@ -868,7 +953,8 @@
       "c": "Cheyenne",
       "d": "All of the above"
     },
-    "correct_answer": "d"
+    "correct_answer": "d",
+    "is_hard": false
   },
   {
     "question": "Name one of the two longest rivers in the United States.",
@@ -878,7 +964,8 @@
       "c": "The Hudson River",
       "d": "The Potomac River"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "What ocean is on the West Coast of the United States?",
@@ -888,7 +975,8 @@
       "c": "Indian Ocean",
       "d": "Arctic Ocean"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "What ocean is on the East Coast of the United States?",
@@ -898,7 +986,8 @@
       "c": "Indian Ocean",
       "d": "Arctic Ocean"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "Name one U.S. territory.",
@@ -908,7 +997,8 @@
       "c": "Canada",
       "d": "Mexico"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "Name one state that borders Canada.",
@@ -918,7 +1008,8 @@
       "c": "New York",
       "d": "Florida"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "Name one state that borders Mexico.",
@@ -928,7 +1019,8 @@
       "c": "New York",
       "d": "Georgia"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What is the capital of the United States?",
@@ -938,7 +1030,8 @@
       "c": "Washington D.C.",
       "d": "Boston"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "Where is the Statue of Liberty?",
@@ -948,7 +1041,8 @@
       "c": "Boston Harbor",
       "d": "San Francisco Bay"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "Why does the flag have 13 stripes?",
@@ -958,7 +1052,8 @@
       "c": "Because there are 13 Supreme Court justices",
       "d": "Because there are 13 Cabinet positions"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "Why does the flag have 50 stars?",
@@ -968,7 +1063,8 @@
       "c": "Because there are 50 senators",
       "d": "Because there are 50 representatives"
     },
-    "correct_answer": "a"
+    "correct_answer": "a",
+    "is_hard": false
   },
   {
     "question": "What is the name of the national anthem?",
@@ -978,7 +1074,8 @@
       "c": "The Star-Spangled Banner",
       "d": "My Country Tis of Thee"
     },
-    "correct_answer": "c"
+    "correct_answer": "c",
+    "is_hard": false
   },
   {
     "question": "When do we celebrate Independence Day?",
@@ -988,7 +1085,8 @@
       "c": "September 17",
       "d": "November 11"
     },
-    "correct_answer": "b"
+    "correct_answer": "b",
+    "is_hard": false
   },
   {
     "question": "Name two national U.S. holidays.",
@@ -998,6 +1096,7 @@
       "c": "Independence Day and Presidents Day",
       "d": "All of the above"
     },
-    "correct_answer": "d"
+    "correct_answer": "d",
+    "is_hard": false
   }
 ]

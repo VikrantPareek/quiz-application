@@ -78,6 +78,9 @@
                 Begin Quiz
                 <svg class="btn-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </button>
+              <button type="button" id="hard-mode-start" class="btn btn-secondary btn-full">
+                ⚡ Hard Mode — 1 min / question
+              </button>
             </form>
             <p class="form-note">Your name is only used for the result CSV.</p>
           </div>
@@ -113,6 +116,9 @@
           <div class="sidebar-block">
             <p class="sidebar-label">Score</p>
             <p id="score-text" class="sidebar-score">0 correct</p>
+          </div>
+          <div class="sidebar-block sidebar-block--quit">
+            <button id="quit-btn" type="button" class="btn btn-quit">Quit Quiz</button>
           </div>
         </aside>
 
@@ -164,6 +170,7 @@
               Download CSV
             </button>
             <button id="practice-hard" type="button" class="btn btn-secondary hidden">Practice Missed</button>
+            <button id="hard-mode-result" type="button" class="btn btn-secondary">⚡ Hard Mode</button>
             <button id="restart" type="button" class="btn btn-ghost">Start Over</button>
           </div>
         </div>
